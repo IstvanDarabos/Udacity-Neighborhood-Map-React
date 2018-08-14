@@ -1,26 +1,29 @@
 import React, {Component} from 'react'
 import ReactDOM from 'react-dom'
 
-/**
- * basically from Google Maps API's library
- */
 
 export default class MapContainer extends Component {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      locations: require("./places.json"),
-      query: '',
-      markers: [],
-      infowindow: new this.props.google.maps.InfoWindow(),
-      bounceIcon: null
-    };
+  state = {
+    locations: [
+      {name: "Ensimag", location: {lat: 45.1931492, lng: 5.7674826999999596}},
+      {name: "Atos", location: {lat: 45.1539228, lng: 5.7207387999999355}},
+      {name: "Museum", location: {lat: 45.1949173, lng: 5.732278299999962}},
+      {name: "Stadium", location: {lat: 45.1874353, lng: 5.740127799999982}},
+      {name: "Mall", location: {lat: 45.158158, lng: 5.731906999999978}}
+    ],
+    query: '',
+    markers: [],
+    infowindow: new this.props.google.maps.InfoWindow(),
+    highlightedIcon: null
   }
 
   componentDidMount() {
     this.loadMap()
     this.onclickLocation()
+    // Create a "highlighted location" marker color for when the user
+    // clicks on the marker.
+    this.setState({highlightedIcon: this.makeMarkerIcon('FFFF24')})
   }
 
   loadMap() {
@@ -32,16 +35,17 @@ export default class MapContainer extends Component {
       const node = ReactDOM.findDOMNode(mapRef)
 
       const mapConfig = Object.assign({}, {
-        center: {lat: 44.396276, lng: 8.943662},
-        zoom: 13,
+        center: {lat: 45.188529, lng: 5.724523999999974},
+        zoom: 12,
         mapTypeId: 'roadmap'
       })
 
       this.map = new maps.Map(node, mapConfig)
       this.addMarkers()
     }
+
   }
-  
+
   onclickLocation = () => {
     const that = this
     const {infowindow} = this.state
@@ -50,7 +54,7 @@ export default class MapContainer extends Component {
       const {markers} = this.state
       const markerInd =
         markers.findIndex(m => m.title.toLowerCase() === e.target.innerText.toLowerCase())
-        that.populateInfoWindow(markers[markerInd], infowindow)
+      that.populateInfoWindow(markers[markerInd], infowindow)
     }
     document.querySelector('.locations-list').addEventListener('click', function (e) {
       if (e.target && e.target.nodeName === "LI") {
@@ -72,17 +76,11 @@ export default class MapContainer extends Component {
       const marker = new google.maps.Marker({
         position: {lat: location.location.lat, lng: location.location.lng},
         map: this.map,
-        title: location.name,
-        imageUrl: location.imageUrl,
-        animation: google.maps.Animation.DROP
+        title: location.name
       })
+
       marker.addListener('click', () => {
         this.populateInfoWindow(marker, infowindow)
-        if (marker.getAnimation() !== null) {
-          marker.setAnimation(null);
-        } else {
-          marker.setAnimation(google.maps.Animation.BOUNCE);
-        }
       })
       this.setState((state) => ({
         markers: [...state.markers, marker]
@@ -92,16 +90,22 @@ export default class MapContainer extends Component {
     this.map.fitBounds(bounds)
   }
 
-populateInfoWindow = (marker, infowindow) => {
+  populateInfoWindow = (marker, infowindow) => {
+    const defaultIcon = marker.getIcon()
+    const {highlightedIcon, markers} = this.state
     // Check to make sure the infowindow is not already opened on this marker.
     if (infowindow.marker !== marker) {
-      marker.setAnimation(window.google.maps.Animation.BOUNCE)
-      marker.setAnimation(null)
-      var contentString = '<h3>' + marker.title + '</h3><img src="' + marker.imageUrl + '"/>';
-      getImage(marker.imageUrl)
-      infowindow.content = contentString
-      infowindow.setContent(contentString)
-      infowindow.open(this.map, marker);
+      // reset the color of previous marker
+      if (infowindow.marker) {
+        const ind = markers.findIndex(m => m.title === infowindow.marker.title)
+        markers[ind].setIcon(defaultIcon)
+      }
+      // change marker icon color of clicked marker
+      marker.setIcon(highlightedIcon)
+      infowindow.marker = marker
+      infowindow.setContent(`<h3>${marker.title}</h3><h4>user likes it</h4>`)
+      infowindow.open(this.map, marker)
+      // Make sure the marker property is cleared if the infowindow is closed.
       infowindow.addListener('closeclick', function () {
         infowindow.marker = null
       })
@@ -153,24 +157,11 @@ populateInfoWindow = (marker, infowindow) => {
                 (<li key={i}>{m.title}</li>))
             }</ul>
           </div>
-          <div id="googleMap" role="application" className="map" ref="map">
+          <div role="application" className="map" ref="map">
             loading map...
           </div>
         </div>
       </div>
     )
   }
-}
-
-function getImage(url){
-    return new Promise(function(resolve, reject){
-        var img = new Image()
-        img.onload = function(){
-            resolve(url)
-        }
-        img.onerror = function(){
-            reject(url)
-        }
-        img.src = url
-    })
 }

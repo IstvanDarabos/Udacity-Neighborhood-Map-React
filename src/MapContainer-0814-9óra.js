@@ -77,12 +77,12 @@ export default class MapContainer extends Component {
         animation: google.maps.Animation.DROP
       })
       marker.addListener('click', () => {
-        this.populateInfoWindow(marker, infowindow)
-        if (marker.getAnimation() !== null) {
-          marker.setAnimation(null);
-        } else {
-          marker.setAnimation(google.maps.Animation.BOUNCE);
-        }
+          if (marker.getAnimation() !== null) {
+            marker.setAnimation(null);
+          } else {
+            marker.setAnimation(google.maps.Animation.BOUNCE);
+          }
+          this.populateInfoWindow(marker, infowindow)
       })
       this.setState((state) => ({
         markers: [...state.markers, marker]
@@ -92,16 +92,47 @@ export default class MapContainer extends Component {
     this.map.fitBounds(bounds)
   }
 
-populateInfoWindow = (marker, infowindow) => {
+  populateInfoWindow = (marker, infowindow) => {
+    const defaultIcon = marker.getIcon()
+    const {markers} = this.state
     // Check to make sure the infowindow is not already opened on this marker.
     if (infowindow.marker !== marker) {
+/*
+      if (infowindow.marker) {
+      if (marker.getAnimation() !== null) {
+        const ind = markers.findIndex(m => m.title === infowindow.marker.title)
+        markers[ind].setIcon(defaultIcon)
+        markers[ind].setAnimation(null)
+        alert("ráment")
+        alert(ind)
+        alert(markers[ind])
+        alert(markers[ind].setIcon(defaultIcon))
+        alert(markers[ind].setAnimation(null))
+      }
+*/  
       marker.setAnimation(window.google.maps.Animation.BOUNCE)
+      var imageSrc = marker.imageUrl
+//      infowindow.marker = marker
+      var image = document.images[0]
+      var downloadingImage = new Image()
+      downloadingImage.onload = function(){
+          image.src = this.src
+      }
+      downloadingImage.src = imageSrc
       marker.setAnimation(null)
-      var contentString = '<h3>' + marker.title + '</h3><img src="' + marker.imageUrl + '"/>';
-      getImage(marker.imageUrl)
+      var contentString = '<h3>' + marker.title + '</h3><img src="' + image.src + '">';
       infowindow.content = contentString
       infowindow.setContent(contentString)
-      infowindow.open(this.map, marker);
+      marker.addListener('click', function() {
+        infowindow.open(this.map, marker);
+      });
+/*
+      var html = '<h3>' + marker.title + '</h3><img src="' + image.src + '">'
+      marker.setAnimation(null)
+      infowindow.setContent(html)
+      infowindow.open(this.map, marker)
+      // Make sure the marker property is cleared if the infowindow is closed.
+*/
       infowindow.addListener('closeclick', function () {
         infowindow.marker = null
       })
@@ -160,17 +191,4 @@ populateInfoWindow = (marker, infowindow) => {
       </div>
     )
   }
-}
-
-function getImage(url){
-    return new Promise(function(resolve, reject){
-        var img = new Image()
-        img.onload = function(){
-            resolve(url)
-        }
-        img.onerror = function(){
-            reject(url)
-        }
-        img.src = url
-    })
 }

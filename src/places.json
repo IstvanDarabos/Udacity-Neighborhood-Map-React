@@ -1,0 +1,32 @@
+[
+  {
+    "name": "Piazza De Ferrari",
+    "imageUrl" : "http://cdn77.orangesmile.com/common/img_cities_w680/genoa--118400-6.jpg",
+    "location": {"lat": 44.407186, "lng": 8.933985}
+  },
+  {
+    "name": "Palazzo Reale",
+    "imageUrl" : "https://thumb7.shutterstock.com/display_pic_with_logo/1277254/483693547/stock-photo-courtyard-of-palazzo-reale-in-genoa-italy-483693547.jpg",
+    "location": {"lat": 44.414925, "lng": 8.926164}
+  },
+  {
+    "name": "Piano di Sant'Andrea",
+    "imageUrl" : "http://cdn77.orangesmile.com/common/img_cities_w680/genoa--118400-11.jpg",
+    "location": {"lat": 44.40559, "lng": 8.934414}
+  },
+  {
+    "name": "Corso Italia",
+    "imageUrl" : "http://cdn77.orangesmile.com/common/img_cities_w680/genoa--118400-5.jpg",
+    "location": {"lat": 44.392498, "lng": 8.960789}
+  },
+  {
+    "name": "San Lorenzo Cathedral",
+    "imageUrl" : "http://www.italymagazine.com/sites/default/files/feature-story/gallery/bigstock-genoa-cathedral-in-italy-95697005.jpg",
+    "location": {"lat": 44.407638, "lng": 8.931459}
+  },
+  {
+    "name": "Hotel Bristol Palace",
+    "imageUrl" : "https://www.allcruisehotels.com/wp-content/uploads/2016/07/genoa-hotel-bristol-palace-sm.jpg",
+    "location": {"lat": 44.406909, "lng": 8.93635}
+  }
+]
