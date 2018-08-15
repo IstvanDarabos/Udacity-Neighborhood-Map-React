@@ -66,19 +66,11 @@ li:hover {
 }
 
 img {
-    opacity: 1;
-    transition: opacity 0.3s;
     display: block;
     height: 25%;
-    width: 150px;
+    width: 250px;
 }
 
-img[data-src] {
-  opacity: 0;
-}
-
-
-/*
 @media screen and (max-width: 800px) {
   .text-input-hidden {
     display: none;
@@ -116,7 +108,7 @@ img[data-src] {
   }
 
 }
-*/
+
 li:focus {
   background-color: #9f8ef9;
 }

@@ -92,29 +92,95 @@ export default class MapContainer extends Component {
     })
     this.map.fitBounds(bounds)
   }
-
+/*
   populateInfoWindow = (marker, infowindow) => {
     // Check to make sure the infowindow is not already opened on this marker.
     if (infowindow.marker !== marker) {
       marker.setAnimation(window.google.maps.Animation.BOUNCE)
       marker.setAnimation(null)
-      var contentString = ''
+
       getImage(marker.imageUrl)
-      contentString = '<h3 id="mapsMarker">' + marker.title + '</h3>'
-      infowindow.content = contentString
+
+//    content -> '<img src=marker.imageUrl alt="Sorry, Failed to load image.">'
+      
+      var remoteImg = document.createElement("IMG")
+      remoteImg.setAttribute("src", marker.imageUrl)
+      remoteImg.setAttribute("alt", "Sorry, Failed to load image.")
+      infowindow.setContent(remoteImg)
+      infowindow.open(this.map, marker)
+
+//    content -> '<p id="mapsMarker">marker.title</p>'
+
+      var p = document.createElement('p')
+      var snippet = document.createTextNode(marker.title)
+      p.appendChild(snippet)
+      remoteImg.appendChild(p)
+
+      var contentString = '<img src=' + marker.imageUrl + 'alt="Sorry, This Image not loaded">'
+      contentString += '<p>' + marker.title + '</p>'
       infowindow.setContent(contentString)
       infowindow.open(this.map, marker)
-      var x = document.createElement("IMG")
-      x.setAttribute("src", marker.imageUrl)
-      x.setAttribute("alt", "The Pulpit Rock")
-      document.getElementById("mapsMarker").appendChild(x);
-      infowindow.setContent(x)
-      infowindow.open(this.map, marker)
+
       infowindow.addListener('closeclick', function () {
         infowindow.marker = null
       })
     }
   }
+*/
+/*
+    populateInfoWindow = (marker, infowindow) => {
+      // Check to make sure the infowindow is not already opened on this marker.
+      if (infowindow.marker !== marker) {
+        marker.setAnimation(window.google.maps.Animation.BOUNCE)
+        marker.setAnimation(null)
+        getImage(marker.imageUrl)
+        var x = document.createElement("IMG")
+        x.setAttribute("src", marker.imageUrl)
+        infowindow.setContent(x)
+        infowindow.open(this.map, marker)
+        infowindow.addListener('closeclick', function () {
+          infowindow.marker = null
+        })
+      }
+    }
+*/
+
+populateInfoWindow = (marker, infowindow) => {
+  // Check to make sure the infowindow is not already opened on this marker.
+  if (infowindow.marker !== marker) {
+    marker.setAnimation(window.google.maps.Animation.BOUNCE)
+    marker.setAnimation(null)
+    getImage(marker.imageUrl)
+
+    var contentString = '<div id="content">'+
+        '<div id="siteNotice">'+
+        '</div>'+
+        '<h1 id="firstHeading" class="firstHeading">'+marker.title+'</h1>'+
+        '<div id="bodyContent">'+
+        '<p><b>'+marker.title+'</b>, also referred to as <b>Ayers Rock</b>, is a large ' +
+        'sandstone rock formation in the southern part of the '+
+        'Northern Territory, central Australia. It lies 335&#160;km (208&#160;mi) '+
+        'south west of the nearest large town, Alice Springs; 450&#160;km '+
+        '(280&#160;mi) by road. Kata Tjuta and Uluru are the two major '+
+        'features of the Uluru - Kata Tjuta National Park. Uluru is '+
+        'sacred to the Pitjantjatjara and Yankunytjatjara, the '+
+        'Aboriginal people of the area. It has many springs, waterholes, '+
+        'rock caves and ancient paintings. Uluru is listed as a World '+
+        'Heritage Site.</p>'+
+        '<img src="' + marker.imageUrl + '">'+
+        '<p>Attribution: Uluru, <a href="https://en.wikipedia.org/w/index.php?title=Uluru&oldid=297882194">'+
+        'https://en.wikipedia.org/w/index.php?title=Uluru</a> '+
+        '(last visited June 22, 2009).</p>'+
+        '</div>'+
+        '</div>';
+
+    infowindow.setContent(contentString)
+    infowindow.open(this.map, marker)
+    infowindow.addListener('closeclick', function () {
+      infowindow.marker = null
+    })
+  }
+}
 
   makeMarkerIcon = (markerColor) => {
     const {google} = this.props
