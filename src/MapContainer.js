@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import ReactDOM from 'react-dom'
+import './places.json'
 
 /**
  * basically from Google Maps API's library
@@ -32,7 +33,7 @@ export default class MapContainer extends Component {
       const node = ReactDOM.findDOMNode(mapRef)
 
       const mapConfig = Object.assign({}, {
-        center: {lat: 44.396276, lng: 8.943662},
+        center: {lat: 44.410585, lng: 8.929776},
         zoom: 13,
         mapTypeId: 'roadmap'
       })
@@ -70,10 +71,10 @@ export default class MapContainer extends Component {
 
     this.state.locations.forEach((location, ind) => {
       const marker = new google.maps.Marker({
+      imageUrl: location.imageUrl,
         position: {lat: location.location.lat, lng: location.location.lng},
         map: this.map,
         title: location.name,
-        imageUrl: location.imageUrl,
         animation: google.maps.Animation.DROP
       })
       marker.addListener('click', () => {
@@ -92,16 +93,23 @@ export default class MapContainer extends Component {
     this.map.fitBounds(bounds)
   }
 
-populateInfoWindow = (marker, infowindow) => {
+  populateInfoWindow = (marker, infowindow) => {
     // Check to make sure the infowindow is not already opened on this marker.
     if (infowindow.marker !== marker) {
       marker.setAnimation(window.google.maps.Animation.BOUNCE)
       marker.setAnimation(null)
-      var contentString = '<h3>' + marker.title + '</h3><img src="' + marker.imageUrl + '"/>';
+      var contentString = ''
       getImage(marker.imageUrl)
+      contentString = '<h3 id="mapsMarker">' + marker.title + '</h3>'
       infowindow.content = contentString
       infowindow.setContent(contentString)
-      infowindow.open(this.map, marker);
+      infowindow.open(this.map, marker)
+      var x = document.createElement("IMG")
+      x.setAttribute("src", marker.imageUrl)
+      x.setAttribute("alt", "The Pulpit Rock")
+      document.getElementById("mapsMarker").appendChild(x);
+      infowindow.setContent(x)
+      infowindow.open(this.map, marker)
       infowindow.addListener('closeclick', function () {
         infowindow.marker = null
       })
@@ -163,13 +171,18 @@ populateInfoWindow = (marker, infowindow) => {
 }
 
 function getImage(url){
+  var Promise = require('es6-promise-polyfill').Promise
     return new Promise(function(resolve, reject){
         var img = new Image()
         img.onload = function(){
-            resolve(url)
+          setTimeout(function(){
+            console.log('Handle resolved promise here.')
+            resolve(url) // Yay! Everything went well!
+          }, 250);
         }
         img.onerror = function(){
-            reject(url)
+          console.log('Handle rejected promise here.')
+          reject(url)
         }
         img.src = url
     })
