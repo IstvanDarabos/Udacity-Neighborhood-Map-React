@@ -1,6 +1,6 @@
-# Webinar map react
+# Neighborhood Map - React
 
-This project is used during the map react webinar.
+This is the 8th project of Google-Udacity Front End Web Development Nanodegree.
 The project is built progressively with commit referencing each step.
 
 A preview of the project is available [here](https://stackblitz.com/github/kedevked/webinar-map-react)
@@ -25,19 +25,17 @@ display specific markers
 
 - clone the project
 
-git clone `https://github.com/kedevked/webinar-map-react.git`
+https://github.com/IstvanDarabos/Udacity-Neighborhood-Map-React
 
-- change the working directory 
-
-`cd webinar-map-react`
+npm install es6-promise (If you need it.)
 
 ### Development mode
 
 Serve the project
  
- `npm start` or `yarn start`
+`npm start` or `yarn start`
 
 ## Contribution
 
-This project is done as part of the react webinar for the map app. 
-So feel free to clone it and use it as the starter of your own project.
+This app made by basically from Google Maps API's library and/or webinar-map.
+This practically a plain basic system, that easily can be continued to improve.

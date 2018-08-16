@@ -2,31 +2,49 @@
   {
     "name": "Piazza De Ferrari",
     "imageUrl": "http://cdn77.orangesmile.com/common/img_cities_w680/genoa--118400-6.jpg",
+    "locationShowUrl": "https://www.tripadvisor.com/Attraction_Review-g187823-d2096775-Reviews-Piazza_Raffaele_De_Ferrari-Genoa_Italian_Riviera_Liguria.html",
+    "someText1": "Situated in the heart of the city between the historical and the modern center Piazza De Ferrari is renowned for its fountain which was restored in recent years along with a major restyling of the square.",
+    "someText2": "Today next to Piazza De Ferrari are numerous office buildings headquarters of banks insurances and other private companies making of this district the financial and business centre of Genoa. (Wikipedia)",
     "location": {"lat": 44.407186, "lng": 8.933985}
   },
   {
     "name": "Palazzo Reale",
     "imageUrl": "https://thumb7.shutterstock.com/display_pic_with_logo/1277254/483693547/stock-photo-courtyard-of-palazzo-reale-in-genoa-italy-483693547.jpg",
+    "locationShowUrl": "https://www.tripadvisor.com/Attraction_Review-g187823-d243387-Reviews-Museo_di_Palazzo_Reale-Genoa_Italian_Riviera_Liguria.html",
+    "someText1": "Construction of the present structure began in 1618 for the Balbi family. From 1643-1655 work renewed under the direction of the architects Pier Francesco Cantone and Michele Moncino. In 1677 the palace was sold to the Durazzo Family who enlarged the palace under the designs of Carlo Fontana.",
+    "someText2": "In 1823 the palace was sold to the Royal House of Savoy. From 1919 the palace has belonged to the state. (Wikipedia)",
     "location": {"lat": 44.414925, "lng": 8.926164}
-  },
+},
   {
     "name": "Porta Soprana",
     "imageUrl": "https://previews.123rf.com/images/benkrut/benkrut1603/benkrut160300091/54893399-porta-soprana-in-genoa-genoa-liguria-italy-.jpg",
+    "locationShowUrl": "https://www.tripadvisor.com/ShowUserReviews-g187823-d1178146-r594305233-Torri_di_Porta_Soprana-Genoa_Italian_Riviera_Liguria.html",
+    "someText1": "is the best-known gate of the ancient walls of Genoa.",
+    "someText2": "After major restorations carried out between the 19th and 20th centuries it has regained the appearance it supposedly had at the time of the construction of the so-called Barbarossa walls (1150 ca.).(Wikipedia)",
     "location": {"lat": 44.405563, "lng": 8.934505}
-  },
+},
   {
     "name": "San Lorenzo Cathedral",
     "imageUrl": "http://www.italymagazine.com/sites/default/files/feature-story/gallery/bigstock-genoa-cathedral-in-italy-95697005.jpg",
+    "locationShowUrl": "https://www.tripadvisor.com/Attraction_Review-g580208-d4154901-Reviews-San_Lorenzo_Cathedral-Scala_Amalfi_Coast_Campania.html",
+    "someText1": "(Italian: Duomo di Genova Cattedrale di San Lorenzo) is a Roman Catholic cathedral in the Italian city of Genoa. It is dedicated to Saint Lawrence (San Lorenzo) and is the seat of the Archbishop of Genoa. The cathedral was consecrated by Pope Gelasius II in 1118 and was built between the twelfth century and the fourteenth century as fundamentally a medieval building with some later additions.",
+    "someText2": "Secondary naves and side covers are of Romanesque style and the main facade is Gothic from the early thirteenth century while capitals and columns with interior corridors date from the early fourteenth century. The bell tower and dome were built in the sixteenth century. (Wikipedia)",
     "location": {"lat": 44.407638, "lng": 8.931459}
   },
   {
     "name": "Via Garibaldi",
     "imageUrl": "http://www.circoloartisticotunnel.it/wp-content/uploads/2015/09/circolo_artistico_tunnel_genova_401-1030x684.jpg",
+    "locationShowUrl": "https://www.tripadvisor.com/LocationPhotoDirectLink-g187823-d232416-i18590141-Via_Garibaldi-Genoa_Italian_Riviera_Liguria.html",
+    "someText1": "is street in the historical centre of Genoa in Northwestern Italy well known for its ancient palaces. It is one of the Strade Nuove (Italian for : new streets) built by the Genoese aristocracy during the Renaissance. Since July 2006 it is inscribed in the list of UNESCO World Heritage Site Genoa: the Strade Nuove and the system of the Palazzi dei Rolli.",
+    "someText2": "The street sanctioned in 1550 was built in 1558-1583. Originally named Strada Maggiore or Strada Nuova in 1882 it was dedicated to Giuseppe Garibaldi. The street is 250 metres long and 7.5 metres wide. (Wikipedia)",
     "location": {"lat": 44.411076, "lng": 8.933145}
   },
   {
     "name": "Hotel Bristol Palace",
     "imageUrl": "https://www.allcruisehotels.com/wp-content/uploads/2016/07/genoa-hotel-bristol-palace-sm.jpg",
+    "someText1": "was designed by Dario Carbone and built in 1905. During World War 2 it housed the German command. At the end of the war it housed the National Liberation  Committee.  The hotel has hosted famous and notable guests such as the Emperor of Japan ",
+    "someText2": "Hirohito and the writers Edmondo De Amicis Luigi Pirandello and Gabriele D'Annunzio. In 1926 Alfred Hitchcock stayed in the hotel during the filming The Pleasure Garden. The hotel is currently managed by Gruppo Duetorrihotels Spa.",
+    "locationShowUrl": "https://www.tripadvisor.com/Hotel_Review-g187823-d202951-Reviews-Hotel_Bristol_Palace-Genoa_Italian_Riviera_Liguria.html",
     "location": {"lat": 44.406909, "lng": 8.93635}
   }
 ]
